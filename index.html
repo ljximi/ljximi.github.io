@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>禧咪 - 一键生成线下实用二维码</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background: #fafbfc;
+            color: #222;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 导航 */
+        header {
+            background: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 700;
+            color: #4263f6;
+        }
+
+        .downloadBtn {
+            background: #4263f6;
+            color: #fff;
+            padding: 10px 22px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* 首屏 */
+        .hero {
+            padding: 70px 0;
+            text-align: center;
+            background: #fff;
+            border-radius: 0 0 40px 40px;
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 16px;
+        }
+
+        .hero p {
+            font-size: 16px;
+            color: #555;
+            max-width: 600px;
+            margin: 0 auto 28px;
+        }
+
+        .mainBtn {
+            display: inline-block;
+            background: #4263f6;
+            color: #fff;
+            padding: 16px 36px;
+            border-radius: 18px;
+            font-size: 16px;
+            text-decoration: none;
+            box-shadow: 0 8px 20px rgba(66, 99, 246, 0.2);
+        }
+
+        /* 功能区域 */
+        .featureSection {
+            padding: 40px 0;
+        }
+
+        .sectionTitle {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 24px;
+        }
+
+        /* 功能卡片横向滚动 */
+        .cardWrap {
+            overflow-x: auto;
+            padding: 0 10px 12px;
+        }
+
+        .cardList {
+            display: flex;
+            gap: 14px;
+            width: max-content;
+        }
+
+        .card {
+            width: 150px;
+            background: #fff;
+            border-radius: 18px;
+            padding: 18px 14px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
+            cursor: pointer;
+            transition: 0.2s;
+            flex-shrink: 0;
+        }
+
+        .card.active {
+            background: #4263f6;
+            color: #fff;
+        }
+
+        .card h3 {
+            font-size: 15px;
+            margin-bottom: 6px;
+        }
+
+        .card p {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        .card.active p {
+            color: #fff;
+        }
+
+        /* 图片横向滚动 —— 全局居中 */
+        .imgScrollWrap {
+            margin: 26px auto;
+            overflow: hidden;
+            max-width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .imgList {
+            display: flex;
+            gap: 16px;
+            transition: transform 0.3s ease;
+            justify-content: center;
+            width: max-content;
+        }
+
+        .imgItem {
+            width: 240px;
+            height: 420px;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            flex-shrink: 0;
+        }
+
+        .imgItem img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* 功能详情介绍 —— 图片下方居中显示 */
+        .featureDesc {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 50px;
+            display: none;
+        }
+
+        .featureDesc.active {
+            display: block;
+        }
+
+        .featureDesc h2 {
+            font-size: 22px;
+            color: #222;
+            margin-bottom: 8px;
+        }
+
+        .featureDesc p {
+            font-size: 15px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* 下载 */
+        .downSection {
+            background: #fff;
+            padding: 70px 20px;
+            text-align: center;
+            border-radius: 40px 40px 0 0;
+            margin-top: 40px;
+        }
+
+        .downSection h2 {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        footer {
+            background: #111;
+            color: #fff;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container nav">
+            <div class="logo">禧咪</div>
+            <a href="#down" class="downloadBtn">免费下载</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>禧咪 · 一键生成线下实用二维码</h1>
+            <p>一个APP搞定WiFi码、挪车码、宠物防丢、物品防丢、服务码、签到码、留言码、地址码…打印即用，扫码直达！</p>
+            <a href="#down" class="mainBtn">立即免费使用</a>
+        </div>
+    </section>
+
+    <section class="featureSection">
+        <div class="container">
+            <h2 class="sectionTitle">🔥 全部功能</h2>
+
+            <!-- 功能卡片横向滚动 -->
+            <div class="cardWrap">
+                <div class="cardList">
+                    <div class="card active" data-fun="1">
+                        <h3>📶 WiFi连接</h3>
+                        <p>一键扫码直连WiFi</p>
+                    </div>
+                    <div class="card" data-fun="2">
+                        <h3>🚗 隐私挪车</h3>
+                        <p>不暴露手机号</p>
+                    </div>
+                    <div class="card" data-fun="3">
+                        <h3>🐾 宠物防丢</h3>
+                        <p>扫码联系主人</p>
+                    </div>
+                    <div class="card" data-fun="4">
+                        <h3>🎒 物品防丢</h3>
+                        <p>钥匙/行李箱/相机</p>
+                    </div>
+                    <div class="card" data-fun="5">
+                        <h3>🏪 店铺服务</h3>
+                        <p>线下获客神器</p>
+                    </div>
+                    <div class="card" data-fun="6">
+                        <h3>✍️ 留言签到</h3>
+                        <p>无需登录即用</p>
+                    </div>
+                    <div class="card" data-fun="7">
+                        <h3>🏠 地址门牌</h3>
+                        <p>快递/出租/导航</p>
+                    </div>
+                    <div class="card" data-fun="8">
+                        <h3>🎨 自定义样式</h3>
+                        <p>高清无水印模板</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 图片横向滚动（全局居中） -->
+            <div class="imgScrollWrap">
+                <div class="imgList" id="imgContainer">
+                    <div class="imgItem"><img src="https://picsum.photos/240/420?random=1"></div>
+                    <div class="imgItem"><img src="https://picsum.photos/240/420?random=2"></div>
+                    <div class="imgItem"><img src="https://picsum.photos/240/420?random=3"></div>
+                </div>
+            </div>
+
+            <!-- 功能详细介绍（图片下方） -->
+            <div class="featureDesc active" data-desc="1">
+                <h2>📶 WiFi一键连接码</h2>
+                <p>输入WiFi名称与密码，一键生成二维码。客人扫码即可直接连接WiFi，无需手动输入复杂密码，家庭、店铺、办公室都非常实用。</p>
+            </div>
+            <div class="featureDesc" data-desc="2">
+                <h2>🚗 隐私挪车码</h2>
+                <p>生成专属挪车二维码，不暴露真实手机号码，扫码可匿名通知车主，有效保护隐私，汽车、电动车、自行车均可使用。</p>
+            </div>
+            <div class="featureDesc" data-desc="3">
+                <h2>🐾 宠物防丢码</h2>
+                <p>为爱宠生成专属防丢挂牌，捡到宠物的人扫码可直接联系主人，全程匿名安全，大幅提升宠物找回概率。</p>
+            </div>
+            <div class="featureDesc" data-desc="4">
+                <h2>🎒 物品防丢码</h2>
+                <p>适用于行李箱、相机、电脑、钥匙、书包等贵重物品，捡到者扫码即可联系失主，轻松找回物品。</p>
+            </div>
+            <div class="featureDesc" data-desc="5">
+                <h2>🏪 店铺服务码</h2>
+                <p>支持展示服务介绍、联系电话、营业时间、导航位置，是线下摆摊、家政、维修、小店获客的实用神器。</p>
+            </div>
+            <div class="featureDesc" data-desc="6">
+                <h2>✍️ 留言签到码</h2>
+                <p>扫码即可留言、建议、签到、打卡，无需注册、无需登录，适用于班级、活动、门店意见箱等场景。</p>
+            </div>
+            <div class="featureDesc" data-desc="7">
+                <h2>🏠 地址门牌码</h2>
+                <p>生成房屋地址、快递代收、出租信息、导航码，贴在门口即可使用，方便快递、访客快速找到位置。</p>
+            </div>
+            <div class="featureDesc" data-desc="8">
+                <h2>🎨 自定义样式码</h2>
+                <p>提供多种精美模板，支持自定义颜色、样式，生成高清无水印二维码图片，可直接打印张贴，美观又专业。</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="downSection" id="down">
+        <div class="container">
+            <h2>📥 立即免费下载禧咪</h2>
+            <br>
+            <a href="https://github.com/LJ-29/resource-download-library/releases/download/ximi/ximi_app.apk" target="_blank" class="mainBtn">点击免费下载</a>
+        </div>
+    </section>
+
+    <footer>禧咪 — 让线下更方便</footer>
+
+    <script>
+        // 每个功能 3 张截图
+        const funImages = {
+            1: ["https://picsum.photos/240/420?random=1", "https://picsum.photos/240/420?random=2", "https://picsum.photos/240/420?random=3"],
+            2: ["https://picsum.photos/240/420?random=4", "https://picsum.photos/240/420?random=5", "https://picsum.photos/240/420?random=6"],
+            3: ["https://picsum.photos/240/420?random=7", "https://picsum.photos/240/420?random=8", "https://picsum.photos/240/420?random=9"],
+            4: ["https://picsum.photos/240/420?random=10", "https://picsum.photos/240/420?random=11", "https://picsum.photos/240/420?random=12"],
+            5: ["https://picsum.photos/240/420?random=13", "https://picsum.photos/240/420?random=14", "https://picsum.photos/240/420?random=15"],
+            6: ["https://picsum.photos/240/420?random=16", "https://picsum.photos/240/420?random=17", "https://picsum.photos/240/420?random=18"],
+            7: ["https://picsum.photos/240/420?random=19", "https://picsum.photos/240/420?random=20", "https://picsum.photos/240/420?random=21"],
+            8: ["https://picsum.photos/240/420?random=22", "https://picsum.photos/240/420?random=23", "https://picsum.photos/240/420?random=24"]
+        };
+
+        const imgContainer = document.getElementById("imgContainer");
+        const cards = document.querySelectorAll(".card");
+        const descs = document.querySelectorAll(".featureDesc");
+
+        // 切换功能
+        function changeFun(id) {
+            // 卡片高亮
+            cards.forEach(c => c.classList.remove("active"));
+            document.querySelector(`.card[data-fun="${id}"]`).classList.add("active");
+
+            // 切换描述
+            descs.forEach(d => d.classList.remove("active"));
+            document.querySelector(`.featureDesc[data-desc="${id}"]`).classList.add("active");
+
+            // 刷新图片
+            const imgs = funImages[id];
+            imgContainer.innerHTML = "";
+            imgs.forEach(src => {
+                const div = document.createElement("div");
+                div.className = "imgItem";
+                div.innerHTML = `<img src="${src}">`;
+                imgContainer.appendChild(div);
+            });
+        }
+
+        // 绑定点击
+        cards.forEach(card => {
+            card.addEventListener("click", () => {
+                changeFun(card.dataset.fun);
+            });
+        });
+
+        // 图片自动滚动
+        function autoScroll() {
+            const list = document.querySelector(".imgList");
+            let pos = 0;
+            setInterval(() => {
+                pos++;
+                const maxScroll = list.scrollWidth - list.clientWidth;
+                if (pos > maxScroll) pos = 0;
+                list.style.transform = `translateX(-${pos}px)`;
+            }, 30);
+        }
+
+        window.onload = autoScroll;
+    </script>
+</body>
+</html>
