@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>禧咪 - 一键生成线下实用二维码</title>
+    <link rel="icon" type="image/png" href="./images/xi_mi_logo_no_bg.png">
+    <link rel="shortcut icon" type="image/png" href="./images/xi_mi_logo_no_bg.png">
+    <link rel="apple-touch-icon" href="./images/xi_mi_logo_no_bg.png">
+    <title>禧咪 - 完全免费的线下实用二维码生成工具</title>
     <style>
         * {
             margin: 0;
@@ -15,12 +18,210 @@
         body {
             background: #fafbfc;
             color: #222;
+            overflow-x: hidden;
         }
 
         .container {
             max-width: 1000px;
             margin: 0 auto;
             padding: 0 20px;
+        }
+
+        /* 响应式布局 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .hero h1 {
+                font-size: 26px !important;
+            }
+
+            .hero p {
+                font-size: 14px !important;
+            }
+
+            .sectionTitle {
+                font-size: 22px !important;
+            }
+
+            .mainBtn {
+                padding: 14px 28px !important;
+                font-size: 15px !important;
+            }
+
+            .imgItem {
+                width: 180px !important;
+                height: 320px !important;
+            }
+
+            .card {
+                width: 130px !important;
+                padding: 12px 10px !important;
+            }
+
+            .card h3 {
+                font-size: 13px !important;
+            }
+
+            .card p {
+                font-size: 11px !important;
+            }
+
+            .featureDesc h2 {
+                font-size: 18px !important;
+            }
+
+            .featureDesc p {
+                font-size: 13px !important;
+            }
+
+            /* 流程图区域适配 */
+            .mermaid {
+                font-size: 12px !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav {
+                height: 60px !important;
+            }
+
+            .logo {
+                font-size: 20px !important;
+            }
+
+            .logo img {
+                width: 32px !important;
+                height: 32px !important;
+            }
+
+            .downloadBtn {
+                padding: 7px 15px !important;
+                font-size: 13px !important;
+            }
+
+            .hero {
+                padding: 30px 0 !important;
+            }
+
+            .heroLogo {
+                width: 50px !important;
+                height: 50px !important;
+            }
+
+            .hero h1 {
+                font-size: 20px !important;
+                line-height: 1.4 !important;
+            }
+
+            .hero p {
+                font-size: 12px !important;
+                padding: 0 10px !important;
+            }
+
+            .mainBtn {
+                padding: 12px 24px !important;
+                font-size: 14px !important;
+            }
+
+            .sectionTitle {
+                font-size: 18px !important;
+            }
+
+            /* 功能卡片更小尺寸 */
+            .card {
+                width: 120px !important;
+                padding: 10px 8px !important;
+            }
+
+            .card h3 {
+                font-size: 12px !important;
+                margin-bottom: 4px !important;
+            }
+
+            .card p {
+                font-size: 10px !important;
+                line-height: 1.3 !important;
+            }
+
+            /* 图片尺寸调整 */
+            .imgItem {
+                width: 160px !important;
+                height: 280px !important;
+            }
+
+            /* 功能描述文字 */
+            .featureDesc {
+                margin-bottom: 30px !important;
+                padding: 0 10px !important;
+            }
+
+            .featureDesc h2 {
+                font-size: 16px !important;
+                margin-bottom: 6px !important;
+            }
+
+            .featureDesc p {
+                font-size: 12px !important;
+                line-height: 1.5 !important;
+            }
+
+            /* 流程图区域优化 */
+            #workflowChart {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            #workflowChart svg {
+                min-width: 600px !important;
+            }
+
+            /* 步骤卡片优化 */
+            .featureSection > div > div:last-child > div {
+                padding: 15px !important;
+            }
+
+            .featureSection > div > div:last-child > div > div {
+                font-size: 30px !important;
+            }
+
+            .featureSection > div > div:last-child > div h4 {
+                font-size: 14px !important;
+            }
+
+            .featureSection > div > div:last-child > div p {
+                font-size: 12px !important;
+            }
+
+            /* 下载区域 */
+            .downSection h2 {
+                font-size: 22px !important;
+            }
+
+            .downSection p {
+                font-size: 14px !important;
+            }
+
+            footer {
+                font-size: 11px !important;
+                padding: 15px 10px !important;
+            }
+
+            footer p {
+                line-height: 1.5 !important;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .container {
+                max-width: 90% !important;
+            }
+
+            .imgItem {
+                width: 220px !important;
+                height: 400px !important;
+            }
         }
 
         /* 导航 */
@@ -40,9 +241,19 @@
         }
 
         .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
             font-size: 26px;
             font-weight: 700;
             color: #4263f6;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            border-radius: 8px;
         }
 
         .downloadBtn {
@@ -62,9 +273,22 @@
             border-radius: 0 0 40px 40px;
         }
 
+        .heroLogo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            object-fit: contain;
+            transition: transform 0.3s;
+        }
+
+        .heroLogo:hover {
+            transform: scale(1.05);
+        }
+
         .hero h1 {
             font-size: 36px;
             margin-bottom: 16px;
+            line-height: 1.3;
         }
 
         .hero p {
@@ -72,6 +296,7 @@
             color: #555;
             max-width: 600px;
             margin: 0 auto 28px;
+            line-height: 1.6;
         }
 
         .mainBtn {
@@ -83,6 +308,12 @@
             font-size: 16px;
             text-decoration: none;
             box-shadow: 0 8px 20px rgba(66, 99, 246, 0.2);
+            transition: all 0.3s;
+        }
+
+        .mainBtn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(66, 99, 246, 0.3);
         }
 
         /* 功能区域 */
@@ -100,6 +331,30 @@
         .cardWrap {
             overflow-x: auto;
             padding: 0 10px 12px;
+            /* 隐藏默认滚动条 */
+            scrollbar-width: thin;
+            scrollbar-color: #c1c1c1 transparent;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Webkit浏览器滚动条样式 */
+        .cardWrap::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .cardWrap::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .cardWrap::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 10px;
+            transition: background 0.3s;
+        }
+
+        .cardWrap::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
         }
 
         .cardList {
@@ -116,8 +371,13 @@
             text-align: center;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
             cursor: pointer;
-            transition: 0.2s;
+            transition: all 0.2s;
             flex-shrink: 0;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
         }
 
         .card.active {
@@ -164,6 +424,11 @@
             overflow: hidden;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
             flex-shrink: 0;
+            transition: transform 0.3s;
+        }
+
+        .imgItem:hover {
+            transform: scale(1.02);
         }
 
         .imgItem img {
@@ -178,6 +443,7 @@
             max-width: 600px;
             margin: 0 auto 50px;
             display: none;
+            padding: 0 15px;
         }
 
         .featureDesc.active {
@@ -224,16 +490,69 @@
 
     <header>
         <div class="container nav">
-            <div class="logo">禧咪</div>
+            <div class="logo">
+                <img src="./images/xi_mi_logo_no_bg.png" alt="禧咪Logo">
+                <span>禧咪</span>
+            </div>
             <a href="#down" class="downloadBtn">免费下载</a>
         </div>
     </header>
 
     <section class="hero">
         <div class="container">
-            <h1>禧咪 · 一键生成线下实用二维码</h1>
-            <p>一个APP搞定WiFi码、挪车码、宠物防丢、物品防丢、服务码、签到码、留言码、地址码…打印即用，扫码直达！</p>
+            <img src="./images/xi_mi_logo_no_bg.png" alt="禧咪Logo" class="heroLogo">
+            <h1>禧咪 · 完全免费的实用二维码生成器</h1>
+            <p>🎉 永久免费 · 无会员机制 · 不收取任何费用 🎉</p>
+            <p>一个APP搞定WiFi码、挪车码、宠物码、位置码、留言/意见箱码、签到/打卡码、祝福/贺卡码、名片码…打印即用，扫码直达！</p>
             <a href="#down" class="mainBtn">立即免费使用</a>
+        </div>
+    </section>
+
+    <!-- 工作流程图区域 -->
+    <section class="featureSection" style="background: #fff; padding: 60px 0; border-radius: 40px; margin: 40px 0;">
+        <div class="container">
+            <h2 class="sectionTitle">📊 使用流程</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 40px; font-size: 16px;">用户在APP中管理信息 → 生成小程序二维码 → 扫码进入禧咪小程序使用</p>
+            
+            <div style="max-width: 900px; margin: 0 auto; background: #f8f9fa; padding: 40px; border-radius: 24px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                <div style="text-align: center;">
+                    <!-- Mermaid 流程图 -->
+                    <div class="mermaid" id="workflowChart">
+graph LR
+    A[下载禧咪APP] --> B[注册/登录账号]
+    B --> C[选择功能类型<br/>WiFi码/挪车码/宠物码等]
+    C --> D[填写相关信息<br/>如WiFi密码/联系方式等]
+    D --> E[生成小程序二维码]
+    E --> F[下载/打印二维码]
+    F --> G[张贴或使用二维码]
+    G --> H[他人扫码进入<br/>禧咪小程序]
+    H --> I[在小程序中使用<br/>对应功能]
+    
+    style A fill:#4263f6,color:#fff
+    style E fill:#ff6b6b,color:#fff
+    style H fill:#51cf66,color:#fff
+    style I fill:#ffd93d,color:#000
+                    </div>
+                </div>
+                
+                <div style="margin-top: 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                    <div style="background: #fff; padding: 20px; border-radius: 16px; text-align: center;">
+                        <div style="font-size: 40px; margin-bottom: 10px;">📱</div>
+                        <h4 style="margin-bottom: 8px; color: #222;">步骤1：APP管理</h4>
+                        <p style="font-size: 14px; color: #666;">在禧咪APP中创建和管理各类二维码信息</p>
+                    </div>
+                    <div style="background: #fff; padding: 20px; border-radius: 16px; text-align: center;">
+                        <div style="font-size: 40px; margin-bottom: 10px;">🎯</div>
+                        <h4 style="margin-bottom: 8px; color: #222;">步骤2：生成二维码</h4>
+                        <p style="font-size: 14px; color: #666;">自动生成对应功能的小程序二维码</p>
+                    </div>
+                    <div style="background: #fff; padding: 20px; border-radius: 16px; text-align: center;">
+                        <div style="font-size: 40px; margin-bottom: 10px;">📲</div>
+                        <h4 style="margin-bottom: 8px; color: #222;">步骤3：扫码使用</h4>
+                        <p style="font-size: 14px; color: #666;">他人扫码进入禧咪小程序直接使用功能</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -253,28 +572,28 @@
                         <p>不暴露手机号</p>
                     </div>
                     <div class="card" data-fun="3">
-                        <h3>🐾 宠物防丢</h3>
+                        <h3>🐾 宠物码</h3>
                         <p>扫码联系主人</p>
                     </div>
                     <div class="card" data-fun="4">
-                        <h3>🎒 物品防丢</h3>
-                        <p>钥匙/行李箱/相机</p>
+                        <h3>📍 位置码</h3>
+                        <p>精准定位导航</p>
                     </div>
                     <div class="card" data-fun="5">
-                        <h3>🏪 店铺服务</h3>
-                        <p>线下获客神器</p>
+                        <h3>✍️ 留言/意见箱</h3>
+                        <p>匿名收集反馈</p>
                     </div>
                     <div class="card" data-fun="6">
-                        <h3>✍️ 留言签到</h3>
-                        <p>无需登录即用</p>
+                        <h3>✅ 签到/打卡</h3>
+                        <p>便捷记录管理</p>
                     </div>
                     <div class="card" data-fun="7">
-                        <h3>🏠 地址门牌</h3>
-                        <p>快递/出租/导航</p>
+                        <h3>💌 祝福/贺卡</h3>
+                        <p>传递美好祝愿</p>
                     </div>
                     <div class="card" data-fun="8">
-                        <h3>🎨 自定义样式</h3>
-                        <p>高清无水印模板</p>
+                        <h3>👤 电子名片</h3>
+                        <p>专业商务交流</p>
                     </div>
                 </div>
             </div>
@@ -298,28 +617,28 @@
                 <p>生成专属挪车二维码，不暴露真实手机号码，扫码可匿名通知车主，有效保护隐私，汽车、电动车、自行车均可使用。</p>
             </div>
             <div class="featureDesc" data-desc="3">
-                <h2>🐾 宠物防丢码</h2>
-                <p>为爱宠生成专属防丢挂牌，捡到宠物的人扫码可直接联系主人，全程匿名安全，大幅提升宠物找回概率。</p>
+                <h2>🐾 宠物码</h2>
+                <p>为宠物生成专属身份二维码，捡到宠物的人扫码可直接联系主人，全程匿名安全，大幅提升宠物找回概率。</p>
             </div>
             <div class="featureDesc" data-desc="4">
-                <h2>🎒 物品防丢码</h2>
-                <p>适用于行李箱、相机、电脑、钥匙、书包等贵重物品，捡到者扫码即可联系失主，轻松找回物品。</p>
+                <h2>📍 位置码</h2>
+                <p>生成精准位置二维码，支持地图导航、地址分享，适用于快递代收、房屋出租、活动场地指引等场景。</p>
             </div>
             <div class="featureDesc" data-desc="5">
-                <h2>🏪 店铺服务码</h2>
-                <p>支持展示服务介绍、联系电话、营业时间、导航位置，是线下摆摊、家政、维修、小店获客的实用神器。</p>
+                <h2>✍️ 留言/意见箱码</h2>
+                <p>扫码即可匿名留言、提交建议或反馈，无需注册登录，适用于班级、活动、门店意见收集等多种场景。</p>
             </div>
             <div class="featureDesc" data-desc="6">
-                <h2>✍️ 留言签到码</h2>
-                <p>扫码即可留言、建议、签到、打卡，无需注册、无需登录，适用于班级、活动、门店意见箱等场景。</p>
+                <h2>✅ 签到/打卡码</h2>
+                <p>快速生成签到二维码，扫码即可完成签到打卡，支持时间地点记录，适用于会议、课程、活动等场合。</p>
             </div>
             <div class="featureDesc" data-desc="7">
-                <h2>🏠 地址门牌码</h2>
-                <p>生成房屋地址、快递代收、出租信息、导航码，贴在门口即可使用，方便快递、访客快速找到位置。</p>
+                <h2>💌 祝福/贺卡码</h2>
+                <p>制作个性化祝福贺卡二维码，传递生日祝福、节日问候、感谢话语，让温暖触手可及。</p>
             </div>
             <div class="featureDesc" data-desc="8">
-                <h2>🎨 自定义样式码</h2>
-                <p>提供多种精美模板，支持自定义颜色、样式，生成高清无水印二维码图片，可直接打印张贴，美观又专业。</p>
+                <h2>👤 电子名片码</h2>
+                <p>创建专业电子名片，包含姓名、电话、邮箱、公司等信息，扫码即可保存联系人，商务交流更高效。</p>
             </div>
 
         </div>
@@ -328,24 +647,33 @@
     <section class="downSection" id="down">
         <div class="container">
             <h2>📥 立即免费下载禧咪</h2>
+            <p style="color: #ff6b6b; font-size: 18px; font-weight: 600; margin: 20px 0;">✅ 完全免费 · 无会员制 · 永不收费 ✅</p>
             <br>
-            <a href="https://github.com/LJ-29/resource-download-library/releases/download/ximi/ximi_app.apk" target="_blank" class="mainBtn">点击免费下载</a>
+            <a href="https://github.com/ljximi/ljximi.github.io/releases/download/ximi/ximi_app.apk" target="_blank" class="mainBtn">点击免费下载</a>
         </div>
     </section>
 
-    <footer>禧咪 — 让线下更方便</footer>
+    <footer>
+        <div class="container">
+            <div style="margin-bottom: 15px;">
+                <img src="./images/xi_mi_logo_no_bg.png" alt="禧咪Logo" style="width: 50px; height: 50px; object-fit: contain; border-radius: 10px;">
+            </div>
+            <p style="margin-bottom: 10px;">禧咪 — 让线下更方便</p>
+            <p style="color: #ffd93d; font-weight: 600;">🎊 郑重承诺：本应用完全免费，无任何会员机制，绝不收取任何费用！🎊</p>
+        </div>
+    </footer>
 
     <script>
         // 每个功能 3 张截图
         const funImages = {
-            1: ["https://picsum.photos/240/420?random=1", "https://picsum.photos/240/420?random=2", "https://picsum.photos/240/420?random=3"],
-            2: ["https://picsum.photos/240/420?random=4", "https://picsum.photos/240/420?random=5", "https://picsum.photos/240/420?random=6"],
-            3: ["https://picsum.photos/240/420?random=7", "https://picsum.photos/240/420?random=8", "https://picsum.photos/240/420?random=9"],
-            4: ["https://picsum.photos/240/420?random=10", "https://picsum.photos/240/420?random=11", "https://picsum.photos/240/420?random=12"],
-            5: ["https://picsum.photos/240/420?random=13", "https://picsum.photos/240/420?random=14", "https://picsum.photos/240/420?random=15"],
-            6: ["https://picsum.photos/240/420?random=16", "https://picsum.photos/240/420?random=17", "https://picsum.photos/240/420?random=18"],
-            7: ["https://picsum.photos/240/420?random=19", "https://picsum.photos/240/420?random=20", "https://picsum.photos/240/420?random=21"],
-            8: ["https://picsum.photos/240/420?random=22", "https://picsum.photos/240/420?random=23", "https://picsum.photos/240/420?random=24"]
+            1: ["https://picsum.photos/240/420?random=1", "https://picsum.photos/240/420?random=2", "https://picsum.photos/240/420?random=3"], // WiFi连接码截图
+            2: ["https://picsum.photos/240/420?random=4", "https://picsum.photos/240/420?random=5", "https://picsum.photos/240/420?random=6"], // 挪车码截图
+            3: ["https://picsum.photos/240/420?random=7", "https://picsum.photos/240/420?random=8", "https://picsum.photos/240/420?random=9"], // 宠物码截图
+            4: ["https://picsum.photos/240/420?random=10", "https://picsum.photos/240/420?random=11", "https://picsum.photos/240/420?random=12"], // 位置码截图
+            5: ["https://picsum.photos/240/420?random=13", "https://picsum.photos/240/420?random=14", "https://picsum.photos/240/420?random=15"], // 留言/意见箱码截图
+            6: ["https://picsum.photos/240/420?random=16", "https://picsum.photos/240/420?random=17", "https://picsum.photos/240/420?random=18"], // 签到/打卡码截图
+            7: ["https://picsum.photos/240/420?random=19", "https://picsum.photos/240/420?random=20", "https://picsum.photos/240/420?random=21"], // 祝福/贺卡码截图
+            8: ["https://picsum.photos/240/420?random=22", "https://picsum.photos/240/420?random=23", "https://picsum.photos/240/420?random=24"]  // 电子名片码截图
         };
 
         const imgContainer = document.getElementById("imgContainer");
@@ -393,6 +721,20 @@
         }
 
         window.onload = autoScroll;
+    </script>
+
+    <!-- 引入 Mermaid 库用于渲染流程图 -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+        // 初始化 Mermaid
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true
+            }
+        });
     </script>
 </body>
 </html>
